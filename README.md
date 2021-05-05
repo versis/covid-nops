@@ -32,5 +32,14 @@ python pdf_to_csv_converter.py
 
 Skrypt nie posiada parametrow, które można ustawić puszczajac go z linii poleceń.
 
+# Inne informacje
+Czas przetwoarzenia całego pdfa to około ** 15 minut **
+
+W razie potrzeby sugeruję wskazywać tylko strony, które nas interesują. Np.
+```python
+df_nops = convert_pdf_to_csv(path_in=path_in, pages="740-end", remove_new_lines=True) 
+```
+dla stron od 740 do ostatniej.
+
 ---
 Pozdro :)
