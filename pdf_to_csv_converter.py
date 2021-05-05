@@ -22,9 +22,7 @@ def convert_pdf_to_csv(path_in: str, pages: str = "all", remove_new_lines: bool 
 
     df.columns = COLUMNS
 
-    df = df.astype({"id": "int32"})
     df = df.reset_index(drop=True)
-
 
     df["id"] = df["id"].replace('', np.nan)
     df["id"] = df["id"].ffill()
@@ -34,6 +32,7 @@ def convert_pdf_to_csv(path_in: str, pages: str = "all", remove_new_lines: bool 
     if remove_new_lines:
         df = df.replace(r"\s+", " ", regex=True)
 
+    df = df.astype({"id": "int32"})
     df = df.sort_values(by=["id"])
 
     print(f"Finished converting in: {time.time() - time_start:.1f} sec")
