@@ -24,7 +24,7 @@ def convert_pdf_to_csv(path_in: str, pages: str = "all", remove_new_lines: bool 
 
     df = df.reset_index(drop=True)
 
-    df["id"] = df["id"].replace('', np.nan)
+    df["id"] = df["id"].replace("", np.nan)
     df["id"] = df["id"].ffill()
 
     df = df.groupby("id").agg(lambda x: "\n".join(x) if list(x)[-1] != "" else list(x)[0]).reset_index()
