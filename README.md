@@ -1,8 +1,14 @@
+# Status
+Plik: **nops.csv**
+
+Ostatnia aktualizacja: **2021-05-04**
+
 # Opis
 
 [Na stronie gov.pl](https://www.gov.pl/web/szczepimysie/niepozadane-odczyny-poszczepienne) dostępne są informacje dot. NOP, w tym raport w pliku .pdf z **niepożądanymi odczynami poszczepiennymi (NOP)**. Znajduje się na samym dole strony.
 
 Format `.pdf` nie jest łatwy w późniejszej analizie, dlatego powstał skrypt `pdf_to_csv_converter.py`, który parsuje dane do formatu `.csv`. 
+
 
 # Instalacja
 
@@ -26,6 +32,5 @@ python pdf_to_csv_converter.py
 
 Skrypt nie posiada parametrow, które można ustawić puszczajac go z linii poleceń.
 
-
-# ---
+---
 Pozdro :)
