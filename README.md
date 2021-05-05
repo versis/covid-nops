@@ -28,4 +28,4 @@ Skrypt nie posiada parametrow, które można ustawić puszczajac go z linii pole
 
 
 # ---
-Pozdro :
+Pozdro :)
