@@ -12,6 +12,9 @@ Format `.pdf` nie jest łatwy w późniejszej analizie, dlatego powstał skrypt 
 
 # Instalacja
 
+Jeśli nie korzystałeś wcześniej z Pythona to proponuję instalację [Minicondy](https://docs.conda.io/en/latest/miniconda.html) z Pythonem w wersji 3.8.
+
+
 [Zainstaluj](https://camelot-py.readthedocs.io/en/master/user/install-deps.html#install-deps) zaleźności potrzebne do użycia Pythonowej biblioteki `Camelot`.
 
 Zainstaluj biblioteki Pythonowe:
