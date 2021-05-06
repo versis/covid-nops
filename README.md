@@ -3,9 +3,6 @@ Plik: **nops.csv**
 
 Ostatnia aktualizacja: **2021-05-04**
 
-## Bugi
-2021-05.06 - w kodzie prawdopodbnie jest bug, który nie zawsze poprawnie laczy wiersze na skraju stron. Poprawka prawdopodbnie pojawi się dziś wieczorem.
-
 # Opis
 
 [Na stronie gov.pl](https://www.gov.pl/web/szczepimysie/niepozadane-odczyny-poszczepienne) dostępne są informacje dot. NOP, w tym raport w pliku .pdf z **niepożądanymi odczynami poszczepiennymi (NOP)**. Znajduje się na samym dole strony.
@@ -47,5 +44,5 @@ df_nops = convert_pdf_to_csv(path_in=path_in, pages="740-end", remove_new_lines=
 ```
 dla stron od 740 do ostatniej.
 
----
-Pozdro :)
+# Historia
+**2021-05-06:** naprawiony bug dotyczący łączenia stron. Algorytm nie brał pod uwagę potencjalnych stron, które mogą mieć puste `ID` na końcu strony. Zznalezione przypadki mają puste `ID` tylko na początku strony, ale nigdy nie wiadomo.
