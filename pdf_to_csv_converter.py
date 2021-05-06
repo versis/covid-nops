@@ -2,7 +2,6 @@ import time
 import csv
 
 import pandas as pd
-import numpy as np
 
 import camelot
 
@@ -14,28 +13,53 @@ def convert_pdf_to_csv(path_in: str, pages: str = "all", remove_new_lines: bool 
     time_start = time.time()
 
     data_camelot = camelot.read_pdf(path_in, pages=pages)
+    dfs_pages = [x.df for x in data_camelot]
 
-    df = pd.concat([x.df for x in data_camelot], axis=0)
+    df_all = dfs_pages[0]
 
-    if df.iloc[0, 0] == "NR":
-        df = df.iloc[1:, :]
+    for df_page in dfs_pages[1:]:
+        df_all = _add_new_page(df_all, df_page)
 
-    df.columns = COLUMNS
+    df_all = _remove_header(df_all)
 
-    df = df.reset_index(drop=True)
+    df_all.columns = COLUMNS
 
-    df["id"] = df["id"].replace("", np.nan)
-    df["id"] = df["id"].ffill()
-
-    df = df.groupby("id").agg(lambda x: "\n".join(x) if list(x)[-1] != "" else list(x)[0]).reset_index()
+    df_all = df_all.reset_index(drop=True)
 
     if remove_new_lines:
-        df = df.replace(r"\s+", " ", regex=True)
+        df_all = df_all.replace(r"\s+", " ", regex=True)
 
-    df = df.astype({"id": "int32"})
-    df = df.sort_values(by=["id"])
+    df_all = df_all.astype({"id": "int32"})
+    df_all = df_all.sort_values(by=["id"])
 
     print(f"Finished converting in: {time.time() - time_start:.1f} sec")
+    return df_all
+
+
+def _add_new_page(all: pd.DataFrame, page: pd.DataFrame) -> pd.DataFrame:
+    if all.iloc[-1, 0] == "" or page.iloc[0, 0] == "":
+        all.iloc[-1] = _merge_rows(all.iloc[-1, :], page.iloc[0, :])
+        page = page.iloc[1:, :]
+    all = pd.concat([all, page])
+    return all
+
+
+def _merge_rows(row1: pd.Series, row2: pd.Series):
+    return row1.combine(row2, lambda x, y: _concatenate_text(x, y))
+
+
+def _concatenate_text(x, y):
+    if x == "":
+        return y
+    if y == "":
+        return x
+
+    return f"{x}\n{y}"
+
+
+def _remove_header(df: pd.DataFrame) -> pd.DataFrame:
+    if df.iloc[0, 0] == "NR":
+        df = df.iloc[1:, :]
     return df
 
 
