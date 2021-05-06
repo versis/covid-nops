@@ -3,6 +3,9 @@ Plik: **nops.csv**
 
 Ostatnia aktualizacja: **2021-05-04**
 
+## Bugi
+2021-05.06 - w kodzie prawdopodbnie jest bug, który nie zawsze poprawnie laczy wiersze na skraju stron. Poprawka prawdopodbnie pojawi się dziś wieczorem.
+
 # Opis
 
 [Na stronie gov.pl](https://www.gov.pl/web/szczepimysie/niepozadane-odczyny-poszczepienne) dostępne są informacje dot. NOP, w tym raport w pliku .pdf z **niepożądanymi odczynami poszczepiennymi (NOP)**. Znajduje się na samym dole strony.
